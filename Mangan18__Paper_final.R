@@ -6,7 +6,7 @@ library(tidyr)
 library(purrr)
 library(car)
 library(ggsignif)
-my_lib <- "/work/RPTU-MIMeS/R_from_ldamm/R/4.3"
+my_lib <- "/path/to/my/lib"
 
 
 #calculate diversity with OTU table (ASV table rarefied before clustering into OTUs)
