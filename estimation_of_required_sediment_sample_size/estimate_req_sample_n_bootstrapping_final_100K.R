@@ -1,3 +1,14 @@
+# original code from Verena rubel https://github.com/verubel/MIMeS/blob/main/Bulk_vs_total_eDNA/estimate_req_sample_n_bootstrapping.R
+# bootstrap combination of samples to reach disired level of diversity (ASV richness)
+# Verena Rubel 
+# RPTU Kaiserslautern Landau
+# 27.02.2024
+# new: account for increase of sequencing depth by combining ASV lists of all samples
+# idea: rarefy all tables to x/1-x/19 so 1x-19x sample combination leads to read counts at same level
+# code modified by Lukas Damm
+# RPTU Kaiserslautern-Landau
+# 10.07.2025
+
 library(dplyr)
 library(tibble)
 library(ggplot2)
