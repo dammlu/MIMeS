@@ -18,23 +18,23 @@ install.packages("remotes")
 remotes::install_github("ropensci/worrms")
 
 #load ASV table
-ASV_table <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/ASVTable_nochim.tsv", sep="\t")
+ASV_table <- read.csv("ASVTable_nochim.tsv", sep="\t")
 head(ASV_table)
 colnames(ASV_table)
 
 
 #load taxonomy table
-taxonomy_table_DZMB <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_thesis/Taxonomy_table_DZMB_all.txt", header = TRUE, sep=",")
+taxonomy_table_DZMB <- read.csv("Taxonomy_table_DZMB_all.txt", header = TRUE, sep=",")
 head(taxonomy_table_DZMB)
 
 #remove duplicate ASVs from taxonomy_table
 taxonomy_duplicated_DZMB <- taxonomy_table_DZMB[!duplicated(taxonomy_table_DZMB$asv),]  
-write.csv(taxonomy_duplicated_DZMB,"/scratch/ldamm/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_Table_DZMB_all_final.csv", row.names = FALSE)
+write.csv(taxonomy_duplicated_DZMB,"Taxonomy_Table_DZMB_all_final.csv", row.names = FALSE)
 
-taxonomy_final_DZMB <- read.csv("/scratch/ldamm/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_Table_DZMB_all_final.csv", check.names = TRUE, sep=",")
+taxonomy_final_DZMB <- read.csv("Taxonomy_Table_DZMB_all_final.csv", check.names = TRUE, sep=",")
 taxonomy_final_DZMB <- as.data.frame(taxonomy_final_DZMB)
 
-mapping_file <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/mapping_file_thesis.csv")
+mapping_file <- read.csv("mapping_file_thesis.csv")
 
 
 # get taxonomy from worms
@@ -55,9 +55,9 @@ tax_join <- left_join(taxonomy_final_DZMB, tax_worms_curated1, by = "Species")
 
 
 tax_join_final <- tax_join[!duplicated(tax_join$asv),]  
-write.csv(tax_join_final,"/scratch/ldamm/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_thesis/taxonomy_all_worms_joined_final.csv", row.names = FALSE)
+write.csv(tax_join_final,"taxonomy_all_worms_joined_final.csv", row.names = FALSE)
 
-taxonomy_join_final <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_thesis/taxonomy_all_worms_joined_final.csv", check.names = TRUE, sep=",")
+taxonomy_join_final <- read.csv("taxonomy_all_worms_joined_final.csv", check.names = TRUE, sep=",")
 taxonomy_join_final <- as.data.frame(taxonomy_join_final)
 
 taxonomy_join_final_right <- taxonomy_join_final[,c(1:6)]
@@ -67,10 +67,10 @@ taxonomy_join_final_merge <- left_join(taxonomy_join_final_right, taxonomy_join_
 taxonomy_join_final_merge_dupli <- taxonomy_join_final_merge[!duplicated(taxonomy_join_final_merge$asv),]  
 taxonomy_join_final_merge_NA <-  taxonomy_join_final_merge_dupli %>% filter(rowSums(is.na(.[6:12])) <= 2)
 
-write.csv(taxonomy_join_final_merge_NA,"/scratch/ldamm/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_final_DZMB/taxonomy_final_worms_taxo_plots.csv", row.names = FALSE)
-write.csv(taxonomy_join_final_merge_dupli, "/scratch/ldamm/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_final_DZMB/taxonomy_final_worms_statistic.csv", row.names = FALSE)
+write.csv(taxonomy_join_final_merge_NA,"taxonomy_final_worms_taxo_plots.csv", row.names = FALSE)
+write.csv(taxonomy_join_final_merge_dupli, "taxonomy_final_worms_statistic.csv", row.names = FALSE)
 
-taxo_final <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/Taxonomy_thesis/taxonomy_all_worms_curated_final.csv",  header = TRUE)
+taxo_final <- read.csv("taxonomy_all_worms_curated_final.csv",  header = TRUE)
 
 #_remove singletons_____________________________________________________________________________
 #transform table column to rows
@@ -114,7 +114,7 @@ ASV_table_singletons_sum_total <- rownames_to_column(ASV_table_singletons_sum_to
 
 
 #load in mapping file
-mapping_file_old <- read.csv("/work/RPTU-MIMeS/Masterarbeit_Lukas/Mangan18_meiofauna_eDNA_WholeCommunity_V1V2_lukas/rawseq/dada2_bulk_eDNA/BLAST/Data_final/mapping_file_old.csv")
+mapping_file_old <- read.csv("mapping_file_old.csv")
 
 #join mapping file and ASV file
 ASV_mapped_df_single_bulk <- as.data.frame(ASV_table_singletons_sum_bulk) %>%

@@ -1,6 +1,6 @@
 
 #load libraries
-my_lib <- "/work/RPTU-MIMeS/R_from_ldamm/R/4.3"
+my_lib <- "path/to/my/lib"
 
 BiocManager::install("DECIPHER", lib = my_lib)
 
