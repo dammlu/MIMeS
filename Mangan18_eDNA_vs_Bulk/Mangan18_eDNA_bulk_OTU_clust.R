@@ -1,3 +1,6 @@
+# Lukas Damm
+# RPTU Kaiserslautern-Landau
+
 
 #load libraries
 my_lib <- "path/to/my/lib"
