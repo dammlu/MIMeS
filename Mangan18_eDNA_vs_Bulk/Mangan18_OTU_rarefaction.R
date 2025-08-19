@@ -1,4 +1,7 @@
-#____prepare otu table from rarefied ASV table________________________________________________________
+# Lukas Damm
+# RPTU Kaiserslautern-Landau
+
+
 
 library(vegan)
 library(ggplot2)
@@ -7,7 +10,9 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 
-#load in OTU table from Sahar, add OTU names column beforehand____________________________________________________________________________________________________________________________________________________________________________________________________________
+#  prepare OTU table from rarefied ASV table
+
+#load in OTU table from Sahar, add OTU names column beforehand____________________________________________________________________________________
 
 #load OTU (97% sim) table
 OTU_table_rfy <- read.csv("OTU_97%_rarefied_OTU_final.csv", sep=",")
@@ -28,7 +33,7 @@ OTU_table_taxo_all_total <- OTU_table_taxo_all[, c(1:54)] %>% column_to_rownames
 OTU_table_taxo_all_bulk_0 <- OTU_table_taxo_all_bulk[which(rowSums(OTU_table_taxo_all_bulk)>0),]
 OTU_table_taxo_all_total_0 <- OTU_table_taxo_all_total[which(rowSums(OTU_table_taxo_all_total)>0),]
 
-#OTU_table_curation_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+#OTU_table_curation__________________________________________________________________________________________________________________________________
 
 
 OTU_table_form_rfy <- OTU_table_final_rfy %>% column_to_rownames("OTU") %>%  mutate_at(vars(1:70), as.numeric)
@@ -174,7 +179,7 @@ OTU_table_total_combined_rfy <- OTU_table_total_rfy_t %>%
 
 OTU_table_total_combined_final_rfy <- OTU_table_total_combined_rfy[,c(54:72)]
 
-#join_taxonomy_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+#join_taxonomy______________________________________________________________________________________________________________________________________
 
 OTU_table_total_tax_rfy <- OTU_table_total_row_rfy %>% left_join(taxo_table_rfy)
 OTU_table_bulk_tax_rfy <- OTU_table_bulk_row_rfy %>% left_join(taxo_table_rfy)
