@@ -1,5 +1,7 @@
-#pairwise PERMANOVA
-
+# pairwise PERMANOVA
+# Lukas Damm
+# RPTU Kaiserslautern-Landau
+# 24.07.2025
 
 library(dplyr)
 library(vegan)
