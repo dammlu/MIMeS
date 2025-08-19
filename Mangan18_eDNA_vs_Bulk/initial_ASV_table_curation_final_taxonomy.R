@@ -1,3 +1,6 @@
+# Lukas Damm
+# RPTU Kaiserslautern-Landau
+
 library(vegan)
 library(ggplot2)
 library(tibble)
