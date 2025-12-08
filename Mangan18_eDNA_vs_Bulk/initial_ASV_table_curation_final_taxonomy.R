@@ -191,7 +191,7 @@ dev.off()
 #rarefaction
 rowSums(ASV_table_singletons_filter_bulk_map)
 min(rowSums(ASV_table_singletons_filter_bulk_map))
-rarefaction_level_bulk <- 45005
+rarefaction_level_bulk <- 45015
 ASV_table_singletons_rare_bulk <- rrarefy(ASV_table_singletons_filter_bulk_map, rarefaction_level_bulk)
 
 
