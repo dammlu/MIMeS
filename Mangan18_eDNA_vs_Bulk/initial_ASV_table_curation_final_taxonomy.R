@@ -191,7 +191,7 @@ dev.off()
 #rarefaction
 rowSums(ASV_table_singletons_filter_bulk_map)
 min(rowSums(ASV_table_singletons_filter_bulk_map))
-rarefaction_level_bulk <- 15005
+rarefaction_level_bulk <- 45005
 ASV_table_singletons_rare_bulk <- rrarefy(ASV_table_singletons_filter_bulk_map, rarefaction_level_bulk)
 
 
@@ -200,12 +200,6 @@ min(rowSums(ASV_table_singletons_filter_total_map))
 rarefaction_level_total <- 15005
 ASV_table_singletons_rare_total <- rrarefy(ASV_table_singletons_filter_total_map, rarefaction_level_total)
 
-rowSums(ASV_table_singletons_filter10_t)
-min(rowSums(ASV_table_singletons_filter10_t))
-rarefaction_level_all <- 15005
-ASV_table_rarefied_total_bulk <- rrarefy(ASV_table_singletons_filter10_t, rarefaction_level_all)
-ASV_table_rarefied_total_bulk_t <- as.data.frame(t(ASV_table_rarefied_total_bulk)) %>% rownames_to_column("asv")
-write.csv(ASV_table_rarefied_total_bulk_t, "ASV_table_rarefied_total_bulk.csv")
 
 
 # check if rarefaction was successfull
